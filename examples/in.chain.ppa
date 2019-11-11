@@ -1,0 +1,58 @@
+units		lj
+comm_modify cutoff 2.0
+
+variable rcut equal 2.0^(1.0/6.0)
+
+atom_style	bond
+special_bonds   fene
+bond_style      fene
+pair_style	lj/cut ${rcut}
+
+read_data	N100M100.data
+
+neighbor	0.4 bin
+neigh_modify	every 1 delay 1
+neigh_modify    one 10000
+
+bond_coeff	1 30.0 1.5 1.0 1.0
+
+pair_modify	shift yes
+pair_coeff	1 1 1.0 1.0 ${rcut}
+
+change_box	all triclinic
+
+thermo          1000
+timestep	0.01
+
+
+fix 1 all nve
+
+
+group end1 id 100:10000:100
+group end2 id 1:9901:100
+fix freeze1 end1 setforce 0.0 0.0 0.0
+fix freeze2 end2 setforce 0.0 0.0 0.0
+
+pair_style      lj/cut/ppa ${rcut}
+pair_modify	shift yes
+pair_coeff	1 1 1.0 1.0 ${rcut}
+bond_style      fene/ppa
+bond_coeff	1 30.0 1.5 1.0 1.0
+
+compute p all ppa
+thermo_style custom step c_p[*]
+thermo		100
+
+dump d1 all custom 10 dump.ppa.lammpstrj id mol x y z
+
+neigh_modify	delay 0 every 1 check yes
+minimize	1.0e-6 0.001 1000 10000
+
+
+
+
+
+
+
+
+
