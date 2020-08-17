@@ -54,6 +54,6 @@ mpirun ./lmp_mpi -in in.example
 
 Users of this package are encouraged to cite the following articles in scientific publications:
 
-* S. K. Sukumaran, G. S. Grest, K. Kremer, R. Everaers, "Identifying the Primitive Path Mesh in Entangled Polymer Liquids", Journal of Polymer Science: Part B: Polymer Physics, Vol. 43, 917-933 (2005)
+* S. K. Sukumaran, G. S. Grest, K. Kremer, R. Everaers, "Identifying the Primitive Path Mesh in Entangled Polymer Liquids", Journal of Polymer Science: Part B: Polymer Physics, **43**, 917-933 (2005), https://onlinelibrary.wiley.com/doi/full/10.1002/polb.20384
 
 * K. Hagita, T. Murashima, "Effect of Chain-Penetration on the Shape of Ring in Mixtures of Ring and Linear Polymers" in preparation.
