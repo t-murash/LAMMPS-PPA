@@ -50,7 +50,7 @@ You can find example files in `USER-PPA/examples`.
 mpirun ./lmp_mpi -in in.example
 ```
 
-## Citing the USER-UEFEX package
+## Citing the USER-PPA package
 
 Users of this package are encouraged to cite the following articles in scientific publications:
 
