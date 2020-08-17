@@ -31,7 +31,7 @@ make yes-molecule
 Then, get this package and install.
 
 ```
-git clone https://github.com/t-murash/USER-UEFEX.git
+git clone https://github.com/t-murash/USER-PPA.git
 cp -r USER-PPA/USER-PPA lammps-*/src/.
 cd lammps-*/src/
 make yes-user-ppa
