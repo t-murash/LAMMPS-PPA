@@ -45,7 +45,7 @@ make mpi
 ```
 
 ## Usage
-You can find several example files in `USER-PPA/examples`.
+You can find example files in `USER-PPA/examples`.
 ```
 mpirun ./lmp_mpi -in in.example
 ```
@@ -53,5 +53,7 @@ mpirun ./lmp_mpi -in in.example
 ## Citing the USER-UEFEX package
 
 Users of this package are encouraged to cite the following articles in scientific publications:
+
+* S. K. Sukumaran, G. S. Grest, K. Kremer, R. Everaers, "Identifying the Primitive Path Mesh in Entangled Polymer Liquids", Journal of Polymer Science: Part B: Polymer Physics, Vol. 43, 917-933 (2005)
 
 * K. Hagita, T. Murashima, "Effect of Chain-Penetration on the Shape of Ring in Mixtures of Ring and Linear Polymers" in preparation.
