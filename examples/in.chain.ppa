@@ -43,7 +43,7 @@ compute p all ppa
 thermo_style custom step c_p[*]
 thermo		100
 
-dump d1 all custom 10 dump.ppa.lammpstrj id mol x y z
+dump d1 all custom 10 dump.ppa.lammpstrj id mol x y z ix iy iz
 
 neigh_modify	delay 0 every 1 check yes
 minimize	1.0e-6 0.001 1000 10000
