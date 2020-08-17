@@ -6,7 +6,7 @@ This is a LAMMPS package for Primitive Path Analysis (PPA).
 
 <img src="https://github.com/t-murash/USER-PPA/blob/master/img/ppa.gif" title="M=100, N=100 Kremer-Grest chains during PPA" width=300/>
 
-<img src="https://github.com/t-murash/USER-PPA/blob/master/img/ppa-ring-linear.gif" title="Ring (red) & Linear chains" width=300/>
+<img src="https://github.com/t-murash/USER-PPA/blob/master/img/ppa-ring-line.gif" title="Ring (red) & Linear chains" width=300/>
 
 Authored by:
 [Takahiro Murashima](https://github.com/t-murash)<br>
