@@ -40,7 +40,11 @@ bond_style      fene/ppa
 bond_coeff	1 30.0 1.5 1.0 1.0
 
 compute p all ppa
-thermo_style custom step c_p[*]
+variable Z equal c_p[1]
+variable a equal c_p[2]
+variable R2 equal c_p[3]
+variable L equal c_p[4]
+thermo_style custom step v_Z v_a v_R2 v_L
 thermo		100
 
 dump d1 all custom 10 dump.ppa.lammpstrj id mol x y z ix iy iz
