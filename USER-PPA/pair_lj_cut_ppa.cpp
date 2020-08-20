@@ -81,7 +81,7 @@ void PairLJCutPPA::compute(int eflag, int vflag)
   double **x = atom->x;
   double **f = atom->f;
   int *type = atom->type;
-  int *mol = atom->molecule;
+  tagint *mol = atom->molecule;
   int nlocal = atom->nlocal;
   double *special_lj = force->special_lj;
   int newton_pair = force->newton_pair;
@@ -102,11 +102,11 @@ void PairLJCutPPA::compute(int eflag, int vflag)
     jlist = firstneigh[i];
     jnum = numneigh[i];
 
-    int moli=mol[i];
+    tagint moli=mol[i];
 
     for (jj = 0; jj < jnum; jj++) {
       j = jlist[jj];
-      int molj=mol[j];
+      tagint molj=mol[j];
 
       if(moli==molj)continue;
       
@@ -161,7 +161,7 @@ void PairLJCutPPA::compute_inner()
   double **x = atom->x;
   double **f = atom->f;
   int *type = atom->type;
-  int *mol = atom->molecule;
+  tagint *mol = atom->molecule;
   int nlocal = atom->nlocal;
   double *special_lj = force->special_lj;
   int newton_pair = force->newton_pair;
@@ -182,7 +182,7 @@ void PairLJCutPPA::compute_inner()
 
   for (ii = 0; ii < inum; ii++) {
     i = ilist[ii];
-    int moli=mol[i];
+    tagint moli=mol[i];
     xtmp = x[i][0];
     ytmp = x[i][1];
     ztmp = x[i][2];
@@ -192,7 +192,7 @@ void PairLJCutPPA::compute_inner()
 
     for (jj = 0; jj < jnum; jj++) {
       j = jlist[jj];
-      int molj=mol[j];
+      tagint molj=mol[j];
       if(moli==molj)continue;
       factor_lj = special_lj[sbmask(j)];
       j &= NEIGHMASK;
@@ -238,7 +238,7 @@ void PairLJCutPPA::compute_middle()
   double **x = atom->x;
   double **f = atom->f;
   int *type = atom->type;
-  int *mol = atom->molecule;
+  tagint *mol = atom->molecule;
   int nlocal = atom->nlocal;
   double *special_lj = force->special_lj;
   int newton_pair = force->newton_pair;
@@ -264,7 +264,7 @@ void PairLJCutPPA::compute_middle()
 
   for (ii = 0; ii < inum; ii++) {
     i = ilist[ii];
-    int moli=mol[i];
+    tagint moli=mol[i];
     xtmp = x[i][0];
     ytmp = x[i][1];
     ztmp = x[i][2];
@@ -274,7 +274,7 @@ void PairLJCutPPA::compute_middle()
 
     for (jj = 0; jj < jnum; jj++) {
       j = jlist[jj];
-      int molj=mol[j];
+      tagint molj=mol[j];
       if(moli==molj)continue;
       factor_lj = special_lj[sbmask(j)];
       j &= NEIGHMASK;
@@ -327,7 +327,7 @@ void PairLJCutPPA::compute_outer(int eflag, int vflag)
   double **x = atom->x;
   double **f = atom->f;
   int *type = atom->type;
-  int *mol = atom->molecule;
+  tagint *mol = atom->molecule;
   int nlocal = atom->nlocal;
   double *special_lj = force->special_lj;
   int newton_pair = force->newton_pair;
@@ -348,7 +348,7 @@ void PairLJCutPPA::compute_outer(int eflag, int vflag)
 
   for (ii = 0; ii < inum; ii++) {
     i = ilist[ii];
-    int moli=mol[i];
+    tagint moli=mol[i];
     xtmp = x[i][0];
     ytmp = x[i][1];
     ztmp = x[i][2];
@@ -358,7 +358,7 @@ void PairLJCutPPA::compute_outer(int eflag, int vflag)
 
     for (jj = 0; jj < jnum; jj++) {
       j = jlist[jj];
-      int molj=mol[j];
+      tagint molj=mol[j];
       if(moli==molj)continue;
       factor_lj = special_lj[sbmask(j)];
       j &= NEIGHMASK;
