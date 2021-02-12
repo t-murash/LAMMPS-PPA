@@ -14,10 +14,10 @@ neighbor	0.4 bin
 neigh_modify	every 1 delay 1
 neigh_modify    one 10000
 
-bond_coeff	1 30.0 1.5 1.0 1.0
+bond_coeff	* 30.0 1.5 1.0 1.0
 
 pair_modify	shift yes
-pair_coeff	1 1 1.0 1.0 ${rcut}
+pair_coeff	* * 1.0 1.0 ${rcut}
 
 change_box	all triclinic
 
