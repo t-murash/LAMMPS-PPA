@@ -58,4 +58,4 @@ Users of this package are encouraged to cite the following articles in scientifi
 
 * S. K. Sukumaran, G. S. Grest, K. Kremer, R. Everaers, "Identifying the Primitive Path Mesh in Entangled Polymer Liquids", Journal of Polymer Science: Part B: Polymer Physics, **43**, 917-933 (2005), https://onlinelibrary.wiley.com/doi/full/10.1002/polb.20384.
 
-* K. Hagita, T. Murashima, "Effect of Chain-Penetration on Ring Shape for Mixtures of Rings and Linear Polymers", Polymer, **XX**, 123493 (2021), https://doi.org/10.1016/j.polymer.2021.123493.
+* K. Hagita, T. Murashima, "Effect of Chain-Penetration on Ring Shape for Mixtures of Rings and Linear Polymers", Polymer, **218**, 123493 (2021), https://doi.org/10.1016/j.polymer.2021.123493.
