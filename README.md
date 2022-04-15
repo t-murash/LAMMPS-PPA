@@ -12,7 +12,7 @@ Authored by:
 [Takahiro Murashima](https://github.com/t-murash)<br>
 Tohoku University, Japan<br>
 Initial commit: Nov 07, 2019<br>
-Last updated: Feb 13, 2021<br>
+Last updated: Apr 15, 2022<br>
 Support provided via [issues](https://github.com/t-murash/LAMMPS-PPA/issues) and/or [email](mailto:murasima@cmpt.phys.tohoku.ac.jp).
 
 
