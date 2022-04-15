@@ -2,28 +2,28 @@
 
 This is a LAMMPS package for Primitive Path Analysis (PPA).
 
-<img src="https://github.com/t-murash/USER-PPA/blob/master/img/ppa.png" title="M=100, N=100 Kremer-Grest chains during PPA" width=600/>
+<img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa.png" title="M=100, N=100 Kremer-Grest chains during PPA" width=600/>
 
-<img src="https://github.com/t-murash/USER-PPA/blob/master/img/ppa.gif" title="M=100, N=100 Kremer-Grest chains during PPA" width=300/>
+<img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa.gif" title="M=100, N=100 Kremer-Grest chains during PPA" width=300/>
 
-<img src="https://github.com/t-murash/USER-PPA/blob/master/img/ppa-ring-line.gif" title="Ring (red) & Linear chains" width=300/>
+<img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa-ring-line.gif" title="Ring (red) & Linear chains" width=300/>
 
 Authored by:
 [Takahiro Murashima](https://github.com/t-murash)<br>
 Tohoku University, Japan<br>
 Initial commit: Nov 07, 2019<br>
 Last updated: Feb 13, 2021<br>
-Support provided via [issues](https://github.com/t-murash/USER-PPA/issues) and/or [email](mailto:murasima@cmpt.phys.tohoku.ac.jp).
+Support provided via [issues](https://github.com/t-murash/LAMMPS-PPA/issues) and/or [email](mailto:murasima@cmpt.phys.tohoku.ac.jp).
 
 
 ## Installation
 
 Download and install LAMMPS according to the following site.
 
-* [LAMMPS](https://lammps.sandia.gov/)
+* [LAMMPS](https://lammps.org/)
 
 ```
-wget http://lammps.sandia.gov/tars/lammps-stable.tar.gz
+wget http://download.lammps.org/tars/lammps-stable.tar.gz
 tar xvf lammps-stable.tar.gz
 cd lammps-*/src/
 make yes-molecule
@@ -33,8 +33,8 @@ make yes-molecule
 Then, get this package and install.
 
 ```
-git clone https://github.com/t-murash/USER-PPA.git
-cp -r USER-PPA/PPA lammps-*/src/.
+git clone https://github.com/t-murash/LAMMPS-PPA.git
+cp -r LAMMPS-PPA/PPA lammps-*/src/.
 cd lammps-*/src/
 make yes-ppa
 ```
@@ -47,7 +47,7 @@ make mpi
 ```
 
 ## Usage
-You can find example files in `USER-PPA/examples`.
+You can find example files in `LAMMPS-PPA/examples`.
 ```
 mpirun ./lmp_mpi -in in.example
 ```
