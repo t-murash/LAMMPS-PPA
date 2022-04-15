@@ -1,4 +1,4 @@
-# USER-PPA
+# PPA
 
 This is a LAMMPS package for Primitive Path Analysis (PPA).
 
@@ -34,9 +34,9 @@ Then, get this package and install.
 
 ```
 git clone https://github.com/t-murash/USER-PPA.git
-cp -r USER-PPA/USER-PPA lammps-*/src/.
+cp -r USER-PPA/PPA lammps-*/src/.
 cd lammps-*/src/
-make yes-user-ppa
+make yes-ppa
 ```
 
 Finally, compile LAMMPS.
@@ -52,7 +52,7 @@ You can find example files in `USER-PPA/examples`.
 mpirun ./lmp_mpi -in in.example
 ```
 
-## Citing the USER-PPA package
+## Citing the PPA package
 
 Users of this package are encouraged to cite the following articles in scientific publications:
 
