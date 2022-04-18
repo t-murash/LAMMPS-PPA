@@ -46,6 +46,31 @@ cd lammps-*/src/
 make mpi
 ```
 
+## For cmake users
+```
+wget https://download.lammps.org/tars/lammps-stable.tar.gz
+tar xvf lammps-stable.tar.gz
+git clone https://github.com/t-murash/LAMMPS-PPA.git
+cp -r LAMMPS-PPA/PPA lammps-*/src/.
+```
+Edit the following files to include `PPA`
+```
+lammps-*/cmake/CMakeLists.txt
+lammps-*/cmake/presets/all_off.cmake
+lammps-*/cmake/presets/all_on.cmake
+```
+The easiest way is, find `POEM` in the above files and place `PPA` below `POEM`.
+
+Then, build using `cmake` with `-DPKG_PPA=yes`
+
+```
+cd lammps-*
+mkdir build
+cd build
+cmake ../cmake -DBUILD_MPI=yes -DPKG_MOLECULE=yes -DPKG_PPA=yes
+make
+```
+
 ## Usage
 You can find example files in `LAMMPS-PPA/examples`.
 ```
