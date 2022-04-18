@@ -73,7 +73,7 @@ lammps-*/cmake/CMakeLists.txt
 lammps-*/cmake/presets/all_off.cmake
 lammps-*/cmake/presets/all_on.cmake
 ```
-The easiest way is, find `POEM` in the above files and place `PPA` below `POEM`.
+The easiest way is, find `POEMS` in the above files and place `PPA` below `POEMS`.
 
 Then, build using `cmake` with `-DPKG_PPA=yes`
 
