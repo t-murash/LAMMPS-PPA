@@ -8,10 +8,14 @@ This is a LAMMPS package for Primitive Path Analysis (PPA).
 
 <p align="center">
 <img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa.gif" title="M=100, N=100 Kremer-Grest chains during PPA" width=300/>
+
+M=100, N=100 Kremer-Grest chains during PPA
 </p>
 
 <p align="center">
 <img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa-ring-line.gif" title="Ring (red) & Linear chains" width=300/>
+
+Ring (red) & Linear chains (pastel color)
 </p>
 
 
@@ -20,7 +24,7 @@ Authored by:
 [Takahiro Murashima](https://github.com/t-murash)<br>
 Tohoku University, Japan<br>
 Initial commit: Nov 07, 2019<br>
-Last updated: Apr 15, 2022<br>
+Last updated: Apr 18, 2022<br>
 Support provided via [issues](https://github.com/t-murash/LAMMPS-PPA/issues) and/or [email](mailto:murasima@cmpt.phys.tohoku.ac.jp).
 
 
