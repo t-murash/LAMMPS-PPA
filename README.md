@@ -1,16 +1,19 @@
 # PPA
 
 This is a LAMMPS package for Primitive Path Analysis (PPA).
+
 <p align="center">
+
 <img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa.png" title="M=100, N=100 Kremer-Grest chains during PPA" width=600/>
 
 <img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa.gif" title="M=100, N=100 Kremer-Grest chains during PPA" width=300/>
 
-**M=100, N=100 Kremer-Grest chains during PPA**
+M=100, N=100 Kremer-Grest chains during PPA
 
 <img src="https://github.com/t-murash/LAMMPS-PPA/blob/master/img/ppa-ring-line.gif" title="Ring (red) & Linear chains" width=300/>
 
-**Ring (red) & Linear chains (pastel color)**
+Ring (red) & Linear chains (pastel color)
+
 </p>
 
 Authored by:
