@@ -66,7 +66,7 @@ make mpi
 ```
 wget https://download.lammps.org/tars/lammps-stable.tar.gz
 tar xvf lammps-stable.tar.gz
-git clone https://github.com/t-murash/LAMMPS-PPA.git
+git clone https://github.com/t-murash/LAMMPS-PPA
 cp -r LAMMPS-PPA/PPA lammps-*/src/.
 ```
 Edit the following files to include `PPA`
