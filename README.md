@@ -32,6 +32,8 @@ Support provided via [issues](https://github.com/t-murash/LAMMPS-PPA/issues) and
 
 ## Installation
 
+### Build LAMMPS with make
+
 Download and install LAMMPS according to the following site.
 
 * [LAMMPS](https://lammps.org/)
@@ -60,7 +62,7 @@ cd lammps-*/src/
 make mpi
 ```
 
-## For cmake users
+### Build LAMMPS with cmake
 ```
 wget https://download.lammps.org/tars/lammps-stable.tar.gz
 tar xvf lammps-stable.tar.gz
@@ -95,6 +97,6 @@ mpirun ./lmp_mpi -in in.example
 
 Users of this package are encouraged to cite the following articles in scientific publications:
 
-* S. K. Sukumaran, G. S. Grest, K. Kremer, R. Everaers, "Identifying the Primitive Path Mesh in Entangled Polymer Liquids", Journal of Polymer Science: Part B: Polymer Physics, **43**, 917-933 (2005), https://doi.org/10.1002/polb.20384.
+* S. K. Sukumaran, G. S. Grest, K. Kremer, R. Everaers, "Identifying the Primitive Path Mesh in Entangled Polymer Liquids", Journal of Polymer Science: Part B: Polymer Physics (2005) **43** 917-933, https://doi.org/10.1002/polb.20384.
 
-* K. Hagita, T. Murashima, "Effect of Chain-Penetration on Ring Shape for Mixtures of Rings and Linear Polymers", Polymer, **218**, 123493 (2021), https://doi.org/10.1016/j.polymer.2021.123493.
+* K. Hagita, T. Murashima, "Effect of Chain-Penetration on Ring Shape for Mixtures of Rings and Linear Polymers" Polymer (2021) **218** 123493, https://doi.org/10.1016/j.polymer.2021.123493.
