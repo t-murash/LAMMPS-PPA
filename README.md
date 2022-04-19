@@ -92,6 +92,10 @@ You can find example files in `LAMMPS-PPA/examples`.
 ```
 mpirun ./lmp_mpi -in in.example
 ```
+or
+```
+mpirun ./lmp -in in.example
+```
 
 ## Citing the PPA package
 
