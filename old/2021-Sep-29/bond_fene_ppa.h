@@ -12,7 +12,7 @@
 ------------------------------------------------------------------------- */
 
 /*
-  2022/8/25
+  2019/11/07
   by T. Murashima @ Tohoku Univ.
  */
 
@@ -31,19 +31,19 @@ namespace LAMMPS_NS {
 
 class BondFENEPPA : public Bond {
  public:
-  BondFENEPPA(class LAMMPS *_lmp) : Bond(_lmp){};
-  ~BondFENEPPA()override;
-  void compute(int, int)override;
-  void coeff(int, char **)override;
-  void init_style()override;
-  double equilibrium_distance(int)override;
-  void write_restart(FILE *)override;
-  void read_restart(FILE *)override;
-  void write_data(FILE *)override;
-  double single(int, double, int, int, double &)override;
-  void *extract(const char *, int &) override;
+  BondFENEPPA(class LAMMPS *);
+  virtual ~BondFENEPPA();
+  virtual void compute(int, int);
+  virtual void coeff(int, char **);
+  void init_style();
+  double equilibrium_distance(int);
+  virtual void write_restart(FILE *);
+  void read_restart(FILE *);
+  void write_data(FILE *);
+  double single(int, double, int, int, double &);
 
  protected:
+  double TWO_1_3;
   double *k,*r0,*epsilon,*sigma;
 
   virtual void allocate();

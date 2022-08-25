@@ -12,27 +12,29 @@
 ------------------------------------------------------------------------- */
 
 /*
-  2022/8/25
+  2019/11/07
   by T. Murashima @ Tohoku Univ.
  */
 
 #include "bond_fene_ppa.h"
-
-#include "atom.h"
-#include "comm.h"
-#include "error.h"
-#include "force.h"
-#include "math_const.h"
-#include "memory.h"
-#include "neighbor.h"
-#include "update.h"
-
+#include <mpi.h>
 #include <cmath>
-#include <cstring>
-
+#include "atom.h"
+#include "neighbor.h"
+#include "comm.h"
+#include "update.h"
+#include "force.h"
+#include "memory.h"
+#include "error.h"
 
 using namespace LAMMPS_NS;
-using MathConst::MY_CUBEROOT2;
+
+/* ---------------------------------------------------------------------- */
+
+BondFENEPPA::BondFENEPPA(LAMMPS *lmp) : Bond(lmp)
+{
+  TWO_1_3 = pow(2.0,(1.0/3.0));
+}
 
 /* ---------------------------------------------------------------------- */
 
@@ -85,34 +87,35 @@ void BondFENEPPA::compute(int eflag, int vflag)
     // if r > 2*r0 something serious is wrong, abort
 
     if (rlogarg < 0.1) {
-      error->warning(FLERR, "FENE bond too long: {} {} {} {}", update->ntimestep, atom->tag[i1],
-                     atom->tag[i2], sqrt(rsq));
-      if (rlogarg <= -3.0) error->one(FLERR, "Bad FENE bond");
+      char str[128];
+      sprintf(str,"FENE bond too long: " BIGINT_FORMAT " "
+              TAGINT_FORMAT " " TAGINT_FORMAT " %g",
+              update->ntimestep,atom->tag[i1],atom->tag[i2],sqrt(rsq));
+      error->warning(FLERR,str,0);
+      if (rlogarg <= -3.0) error->one(FLERR,"Bad FENE bond");
       rlogarg = 0.1;
     }
 
     fbond = -k[type]/rlogarg;
 
     // force from LJ term
-    // 2022/8/25 by TM
-    // ignoring intra molecular interaction from LJ term.
-    /*
-    if (rsq < MY_CUBEROOT2 * sigma[type] * sigma[type]) {
-      sr2 = sigma[type] * sigma[type] / rsq;
-      sr6 = sr2 * sr2 * sr2;
-      fbond += 48.0 * epsilon[type] * sr6 * (sr6 - 0.5) / rsq;
+    // 2019/10/29 by TM
+    /* 
+    if (rsq < TWO_1_3*sigma[type]*sigma[type]) {
+      sr2 = sigma[type]*sigma[type]/rsq;
+      sr6 = sr2*sr2*sr2;
+      fbond += 48.0*epsilon[type]*sr6*(sr6-0.5)/rsq;
     }
     */
 
     // energy
 
     if (eflag) {
-      ebond = -0.5 * k[type] * r0sq * log(rlogarg);
-      // 2022/8/25 by TM
-      // ignoring intra molecular interaction from LJ term.
+      ebond = -0.5 * k[type]*r0sq*log(rlogarg);
+      // 2019/10/29 by TM
       /*
-      if (rsq < MY_CUBEROOT2 * sigma[type] * sigma[type])
-        ebond += 4.0 * epsilon[type] * sr6 * (sr6 - 1.0) + epsilon[type];
+      if (rsq < TWO_1_3*sigma[type]*sigma[type])
+        ebond += 4.0*epsilon[type]*sr6*(sr6-1.0) + epsilon[type];
       */
     }
 
@@ -139,14 +142,14 @@ void BondFENEPPA::compute(int eflag, int vflag)
 void BondFENEPPA::allocate()
 {
   allocated = 1;
-  const int np1 = atom->nbondtypes + 1;
+  int n = atom->nbondtypes;
 
-  memory->create(k, np1, "bond:k");
-  memory->create(r0, np1, "bond:r0");
-  memory->create(epsilon, np1, "bond:epsilon");
-  memory->create(sigma, np1, "bond:sigma");
-  memory->create(setflag, np1, "bond:setflag");
-  for (int i = 1; i < np1; i++) setflag[i] = 0;
+  memory->create(k,n+1,"bond:k");
+  memory->create(r0,n+1,"bond:r0");
+  memory->create(epsilon,n+1,"bond:epsilon");
+  memory->create(sigma,n+1,"bond:sigma");
+  memory->create(setflag,n+1,"bond:setflag");
+  for (int i = 1; i <= n; i++) setflag[i] = 0;
 }
 
 /* ----------------------------------------------------------------------
@@ -222,15 +225,15 @@ void BondFENEPPA::read_restart(FILE *fp)
   allocate();
 
   if (comm->me == 0) {
-    utils::sfread(FLERR, &k[1], sizeof(double), atom->nbondtypes, fp, nullptr, error);
-    utils::sfread(FLERR, &r0[1], sizeof(double), atom->nbondtypes, fp, nullptr, error);
-    utils::sfread(FLERR, &epsilon[1], sizeof(double), atom->nbondtypes, fp, nullptr, error);
-    utils::sfread(FLERR, &sigma[1], sizeof(double), atom->nbondtypes, fp, nullptr, error);
+    fread(&k[1],sizeof(double),atom->nbondtypes,fp);
+    fread(&r0[1],sizeof(double),atom->nbondtypes,fp);
+    fread(&epsilon[1],sizeof(double),atom->nbondtypes,fp);
+    fread(&sigma[1],sizeof(double),atom->nbondtypes,fp);
   }
-  MPI_Bcast(&k[1], atom->nbondtypes, MPI_DOUBLE, 0, world);
-  MPI_Bcast(&r0[1], atom->nbondtypes, MPI_DOUBLE, 0, world);
-  MPI_Bcast(&epsilon[1], atom->nbondtypes, MPI_DOUBLE, 0, world);
-  MPI_Bcast(&sigma[1], atom->nbondtypes, MPI_DOUBLE, 0, world);
+  MPI_Bcast(&k[1],atom->nbondtypes,MPI_DOUBLE,0,world);
+  MPI_Bcast(&r0[1],atom->nbondtypes,MPI_DOUBLE,0,world);
+  MPI_Bcast(&epsilon[1],atom->nbondtypes,MPI_DOUBLE,0,world);
+  MPI_Bcast(&sigma[1],atom->nbondtypes,MPI_DOUBLE,0,world);
 
   for (int i = 1; i <= atom->nbondtypes; i++) setflag[i] = 1;
 }
@@ -258,30 +261,27 @@ double BondFENEPPA::single(int type, double rsq, int /*i*/, int /*j*/,
   // if r > 2*r0 something serious is wrong, abort
 
   if (rlogarg < 0.1) {
-    error->warning(FLERR, "FENE bond too long: {} {:.8}", update->ntimestep, sqrt(rsq));
-    if (rlogarg <= -3.0) error->one(FLERR, "Bad FENE bond");
+    char str[128];
+    sprintf(str,"FENE bond too long: " BIGINT_FORMAT " %g",
+            update->ntimestep,sqrt(rsq));
+    error->warning(FLERR,str,0);
+    if (rlogarg <= -3.0) error->one(FLERR,"Bad FENE bond");
     rlogarg = 0.1;
   }
 
-  double eng = -0.5 * k[type] * r0sq * log(rlogarg);
-  fforce = -k[type] / rlogarg;
-  if (rsq < MY_CUBEROOT2 * sigma[type] * sigma[type]) {
-    double sr2, sr6;
-    sr2 = sigma[type] * sigma[type] / rsq;
-    sr6 = sr2 * sr2 * sr2;
-    eng += 4.0 * epsilon[type] * sr6 * (sr6 - 1.0) + epsilon[type];
-    fforce += 48.0 * epsilon[type] * sr6 * (sr6 - 0.5) / rsq;
+  double eng = -0.5 * k[type]*r0sq*log(rlogarg);
+  fforce = -k[type]/rlogarg;
+
+  // 2019/10/29 by TM
+  /*
+  if (rsq < TWO_1_3*sigma[type]*sigma[type]) {
+    double sr2,sr6;
+    sr2 = sigma[type]*sigma[type]/rsq;
+    sr6 = sr2*sr2*sr2;
+    eng += 4.0*epsilon[type]*sr6*(sr6-1.0) + epsilon[type];
+    fforce += 48.0*epsilon[type]*sr6*(sr6-0.5)/rsq;
   }
-
-
+  */
 
   return eng;
-}
-
-void *BondFENEPPA::extract(const char *str, int &dim)
-{
-  dim = 1;
-  if (strcmp(str, "k") == 0) return (void *) k;
-  if (strcmp(str, "r0") == 0) return (void *) r0;
-  return nullptr;
 }
